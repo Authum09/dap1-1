@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class testing {
+public class Testing {
 
     public static void main(String[] args){
         LectureWithSortAlgorithms dap1 = new LectureWithSortAlgorithms( "DAP 1", 7 );
@@ -14,6 +14,7 @@ public class testing {
             dap1.add( new Student( "qwe", "M", regNo ) );
 
         }*/
+// test 1234
 
         dap1.add( new Student( "A", "M", 17 ) );
         dap1.add( new Student( "B", "Inf", 22 ) );
