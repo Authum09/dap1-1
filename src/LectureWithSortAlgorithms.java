@@ -5,6 +5,7 @@ public class LectureWithSortAlgorithms
     private String title;
     private Student[] students;
     private int firstUnused;
+    public int counter;
 
     public LectureWithSortAlgorithms( String t, int cap ) 
     {
@@ -57,18 +58,14 @@ public class LectureWithSortAlgorithms
         Student[] sortedStudents = new Student[students.length];
 
         for(int i = 0; i < firstUnused; i++) {
-            //für jedes element aus students
-            System.out.println("#####################################################################");
             int count = 0;
 
             for(int j = 0; j < firstUnused; j++){
                 if(!(students[j].hasGreaterName(students[i]))){
                     count++;
                 }
-                System.out.println("count: " + count);
             }
             count--;
-            System.out.println("Index von "+ students[i] + " : "+ count);
 
             if(sortedStudents[count] == null){
                 sortedStudents[count] = students[i];
@@ -81,18 +78,70 @@ public class LectureWithSortAlgorithms
                             state = false;
                         }
 
-
                     }
             }
 
-
         }
 
+        /*System.out.println("DEBUG:");
+        print(sortedStudents);*/
+        students = sortedStudents;
+    }
 
+    public void swapSortByName2(){
 
-        System.out.println("DEBUG:");
-        print(sortedStudents);
-        //students = sortedStudents;
+        for(int i = 0; i < students.length; i++){
+            for(int j = 0; j < students.length-1; j++){
+                if(students[j].hasGreaterName(students[j+1]) & counter()){
+                    Student temp = students[j+1];
+                    students[j+1] = students[j];
+                    students[j] = temp;
+                }
+            }
+        }
+    }
+
+    public void betterSwapSortByName(){
+        for(int i = 0; i < students.length/2; i++){
+            for(int j = 0; j < students.length-1; j++){
+                if(students[j].hasGreaterName(students[j+1]) & counter()){
+                    Student temp = students[j+1];
+                    students[j+1] = students[j];
+                    students[j] = temp;;
+                }
+
+            }
+            for(int j = students.length-1; j >0; j--){
+                if(students[j-1].hasGreaterName(students[j]) & counter()){
+                    Student temp = students[j-1];
+                    students[j-1] = students[j];
+                    students[j] = temp;
+                }
+
+            }
+        }
+    }
+
+    public void swapSortByName(){
+        swapSortByNameInternal(students.length-1);
+    }
+
+    private void swapSortByNameInternal(int len){
+        for(int j = 0; j < len; j++){
+            if(students[j].hasGreaterName(students[j+1]) & counter()){
+                Student temp = students[j+1];
+                students[j+1] = students[j];
+                students[j] = temp;
+            }
+        }
+        if(len > 0) {
+            swapSortByNameInternal(len-1);
+        }
+    }
+
+    private boolean counter(){
+        counter++;
+        return true;
     }
 
     private void print(Student[] arr){
